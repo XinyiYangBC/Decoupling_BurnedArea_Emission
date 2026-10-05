@@ -18,14 +18,14 @@ from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 
 from cmap import Colormap  
 
-# ========================= 公共设定 =========================
+
 plt.rcParams['mathtext.fontset'] = 'stix'
 plt.rcParams['font.family'] = 'Times New Roman'
 
 startyear_use = 2002
 endyear_use   = 2022
 
-# ============ 通用线性趋势函数 ===========
+
 def calculate_trend_line(series):
     x = np.array(range(1, len(series) + 1))
     y = series
@@ -118,7 +118,7 @@ Emission_MOE_use    = np.array(trends_E_uncert)
 DM_data_use = [calculate_Regional_Annual_Mean_DM(v) for v in Var_name]
 DM_data_use = np.array(DM_data_use).round(2)
 
-# -------------- 计算 BA / Emission / EI / DM 的均值和趋势 ----------
+
 def calc_mean_trend(data_array):
     am_use   = []
     slope_use = []
@@ -141,7 +141,7 @@ EI_am, EI_slope, EI_p, EI_std_err             = calc_mean_trend(EI_data_use)
 
 DM_am, DM_slope, DM_p, DM_std_err             = calc_mean_trend(DM_data_use)
 
-# 这里你现在是直接用 slope，不转百分比：
+
 BA_slope_percentage        = BA_slope * 1.
 Emission_slope_percentage  = Emission_slope * 1.
 EI_slope_percentage        = EI_slope * 1.
@@ -201,7 +201,7 @@ trends_EI_use    = np.array(trends_EI_use)
 trends_EI_uncert = np.array(trends_EI_uncert)
 trends_Total_use = np.array(trends_Total_use)
 
-# --- 全局合并（Total = sum 其他） ---
+
 global_EI_C         = np.sum(trends_EI_use[1:])
 trends_EI_use[0]    = global_EI_C
 EI_C_Table          = trends_EI_use.copy()
@@ -240,7 +240,7 @@ Final_table_trend_contribution = np.array([
     Whole_uncert_Table
 ])
 
-# ------- 提取 Total / SAVA / BORF / TEMF 用于 stacked bar -------
+
 net_trend_table = Final_table_trend_contribution[4:].copy()
 net_trend_table_4biome = np.array([
     net_trend_table[:, 0],  # Total
@@ -259,7 +259,7 @@ EI_plot       = np.array(EI_plot)
 EI_plot_sum   = EI_plot.sum()
 EI_plot_ratio = EI_plot / EI_plot_sum
 
-# ------- 为 stacked bar 整理数据 -------
+
 bar_trend_table_4biome = np.array([
     Final_table_trend_contribution[:, 0],
     Final_table_trend_contribution[:, 1],
@@ -267,7 +267,7 @@ bar_trend_table_4biome = np.array([
     Final_table_trend_contribution[:, 5]
 ]).T
 
-# 顺序：EI_C, BA_C, net_observed, net_reconstructed, MOE_EI, MOE_BA, MOE_Total
+
 bar_plot_use = np.array([
     bar_trend_table_4biome[0, :],  # EI
     bar_trend_table_4biome[2, :],  # BA
