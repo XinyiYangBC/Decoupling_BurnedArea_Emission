@@ -2,8 +2,6 @@
 
 This repository contains the analysis and visualization code used in the study
 
-Non-forest fires drive the global decoupling of burned area and fire emissions
-
 The code was used to process publicly available fire, vegetation, and meteorological datasets, perform statistical and structural equation modeling analyses, and generate the figures presented in the manuscript and Supplementary Information.
 
 ## System requirements
